@@ -3,7 +3,8 @@ module.exports = {
   browser: true,
   collectCoverageFrom: ['src/**/*.js', 'babel.js'],
   setupFiles: ['./tests/__setup__.js'],
-  testMatch: ['<rootDir>/tests/**/*-test.js'],
+  testMatch: ['<rootDir>/tests/wrappers/VueWrapper-test.js'],
+  // testMatch: ['<rootDir>/tests/**/*-test.js'],
   moduleFileExtensions: ['js', 'json', 'node', 'vue'],
   transform: {
     '\\.js$': 'babel-jest',

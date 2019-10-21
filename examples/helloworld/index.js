@@ -1,8 +1,8 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Compo from './component'
 
 ReactDOM.render(
-    // "1212",
-    <h1>Hello, world!22211</h1>,
-    document.getElementById('root')
-);
+  <Compo />,
+  document.getElementById('root')
+)

@@ -1,6 +1,7 @@
 import React from 'react'
 import Vue from 'vue'
 import ReactWrapper from './React'
+import { log } from 'util'
 
 const VUE_COMPONENT_NAME = 'vuera-internal-component-name'
 
@@ -27,7 +28,9 @@ export default class VueContainer extends React.Component {
      */
     const createVueInstance = this.createVueInstance
     const self = this
-    this.createVueInstance = function (element, component, prevComponent) {
+    this.createVueInstanceRef = function (element, component, prevComponent) {
+      self.element = element;
+      
       createVueInstance(element, self, component, prevComponent)
     }
   }
@@ -61,6 +64,9 @@ export default class VueContainer extends React.Component {
   createVueInstance (targetElement, reactThisBinding) {
     const { component, on, ...props } = reactThisBinding.props
 
+    console.log(JSON.stringify(component));
+    reactThisBinding.vueInstance = null
+
     // `this` refers to Vue instance in the constructor
     reactThisBinding.vueInstance = new Vue({
       el: targetElement,
@@ -93,6 +99,9 @@ export default class VueContainer extends React.Component {
   }
 
   render () {
-    return <div ref={this.createVueInstance} />
+    return <div ref = {
+      this.createVueInstanceRef
+    }
+    />
   }
 }
